@@ -26,10 +26,23 @@ class QualitiesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function add($id)
     {
-        //
+       
+  
+
+         $qualities = new qualities();
+        $crushes = Crush::all()->where('id', $id);
+
+        return view('crushes.add', array(   'crushes' =>$crushes,
+                                            'qualities'=>$qualities,
+                                            'action'=>route('qualities.store'), 
+                                            'submit_text'=>"Add Qualities"));
+
+         
     }
+
+
 
     /**
      * Store a newly created resource in storage.
@@ -87,25 +100,29 @@ class QualitiesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+     public function destroy($id)
     {
-        //
+        $qual =qualities::find($id);
+        $qual->delete();
+
+        return redirect()->back();
     }
-    public function add($id)
-    {
-         $qualities = new qualities();
-        return view('qualities.add', array('qualities'=>$qualities,
-                                            'action'=>route('qualities.store'), 
-                                            'submit_text'=>"Add Qualities"));
     
-    }
 
      public function store(Request $request)
     {
         $qualities=new qualities();
         $this->setAndSavequalitiesData($qualities, $request);
 
-        return redirect()->route('crushes.profile');
+        return redirect()->route('crushes.index');
+    }
+ public function setAndSavequalitiesData($qualities, $request)
+    {
+        $qualities->qualities = $request->qualities;
+        $qualities->id2 = $request->id2;
+        
+        $qualities->save();
+
     }
 
   
