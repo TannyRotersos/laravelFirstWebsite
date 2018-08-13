@@ -73,4 +73,7 @@ Route::post('/crushes/store', 'CrushesController@store')->name('crushes.store');
 Route::get('/crushes/{id}/edit', 'CrushesController@edit')->name('crushes.id.edit');
 Route::post('/crushes/{id}/update', 'CrushesController@update')->name('crushes.id.update');
 Route::get('/crushes/{id}/destroy', 'CrushesController@destroy')->name('crushes.id.destroy');
-Route::get('/crushes/{id}/show', 'CrushesController@index')->name('crushes.id.show');
+Route::get('/crushes/profile/{id}', 'QualitiesController@show')->name('crushes.id.show');
+Route::get('/crushes/add', 'QualitiesController@add')->name('crushes.add');
+Route::post('/crushes/store', 'QualitiesController@store')->name('crushes.store');
+//Route::get('/crushes/profile/{id}', 'QualitiesController@qualshow')->name('crushes.id.qualshow');

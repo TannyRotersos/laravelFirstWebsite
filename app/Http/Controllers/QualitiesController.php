@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\qualities;
+use Carbon\Carbon;
+use App\Crush;
 
 class QualitiesController extends Controller
 {
@@ -13,9 +16,9 @@ class QualitiesController extends Controller
      */
     public function index()
     {
-        $qualities =Qualities::all();
 
-        return view('Qualities.index', array('qualities'=>$qualities));
+   
+
     }
 
     /**
@@ -34,10 +37,6 @@ class QualitiesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
-        //
-    }
 
     /**
      * Display the specified resource.
@@ -47,7 +46,16 @@ class QualitiesController extends Controller
      */
     public function show($id)
     {
-        //
+        $crushes = Crush::all()->where('id', $id);
+        $qualities = qualities::all()->where('id2', $id);
+
+
+    return view ('crushes.profile', array('crushes' =>$crushes,
+                                        'qualities' =>$qualities));
+
+
+    
+
     }
 
     /**
@@ -83,4 +91,23 @@ class QualitiesController extends Controller
     {
         //
     }
+    public function add($id)
+    {
+         $qualities = new qualities();
+        return view('qualities.add', array('qualities'=>$qualities,
+                                            'action'=>route('qualities.store'), 
+                                            'submit_text'=>"Add Qualities"));
+    
+    }
+
+     public function store(Request $request)
+    {
+        $qualities=new qualities();
+        $this->setAndSavequalitiesData($qualities, $request);
+
+        return redirect()->route('crushes.profile');
+    }
+
+  
+
 }
