@@ -7,7 +7,7 @@
 
   	<label>Quality:</label>
   	<input type="text" name="qualities">
-  	<br>
+  	<br><br>
 
 
    	@foreach($crushes as $crush )

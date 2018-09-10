@@ -78,3 +78,22 @@ Route::get('/crushes/profile/{id}', 'QualitiesController@show')->name('crushes.i
 Route::get('/crushes/add/{id}', 'QualitiesController@add')->name('crushes.id.add');
 Route::post('/crushes/profile/store', 'QualitiesController@store')->name('qualities.store');
 Route::get('/crushes/profile/destroy/{id}', 'QualitiesController@destroy')->name('qualities.id.destroy');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('profile', function () {
+    // Only authenticated users may enter...
+})->middleware('auth');
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
