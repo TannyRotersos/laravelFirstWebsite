@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 08, 2018 at 05:01 AM
+-- Generation Time: Sep 10, 2018 at 07:11 AM
 -- Server version: 10.1.34-MariaDB
 -- PHP Version: 7.2.7
 
@@ -43,8 +43,8 @@ CREATE TABLE `crushes` (
 --
 
 INSERT INTO `crushes` (`id`, `first_name`, `last_name`, `fb_profile_link`, `contact_number`, `created_at`, `updated_at`) VALUES
-(1, 'Tanny', 'Rotersos', 'http://fb.com/tanny.rotersos', '09123941655', '2018-08-07 17:51:29', '2018-08-07 17:51:29'),
-(3, 'Akong', 'Kaugalingon', 'http://www.twitter.com/tannyrotersos', '09092634079', '2018-08-07 18:01:54', '2018-08-07 18:01:54');
+(4, 'Tanny', 'Rotersos', 'http://www.facebook.com/tanny.rotersos', '09123941655', '2018-08-08 17:21:41', '2018-08-08 17:21:41'),
+(6, 'rty', 'try', 'http://www.facebook.com/tanny.rotersos', '09123941655', '2018-08-14 00:08:06', '2018-08-14 00:08:06');
 
 -- --------------------------------------------------------
 
@@ -66,7 +66,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (1, '2014_10_12_000000_create_users_table', 1),
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2018_08_01_021426_create_crushes_table', 2),
-(5, '2018_08_08_023310_create_qualities_table', 3);
+(5, '2018_08_08_023310_create_qualities_table', 3),
+(6, '2018_09_10_025018_add_username_column_to_users', 4);
 
 -- --------------------------------------------------------
 
@@ -94,6 +95,19 @@ CREATE TABLE `qualities` (
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
+--
+-- Dumping data for table `qualities`
+--
+
+INSERT INTO `qualities` (`id`, `qualities`, `id2`, `created_at`, `updated_at`) VALUES
+(1, 'maot nawng', '4', '2018-08-12 21:03:32', '2018-08-12 21:03:32'),
+(9, 'romantic', '5', '2018-08-12 21:40:09', '2018-08-12 21:40:09'),
+(10, 'gwapo ko', '5', '2018-08-12 23:38:27', '2018-08-12 23:38:27'),
+(32, 'u', '4', '2018-08-14 00:06:38', '2018-08-14 00:06:38'),
+(33, 'yu', '4', '2018-08-14 00:07:43', '2018-08-14 00:07:43'),
+(34, 'hfdh', '4', '2018-08-14 00:07:58', '2018-08-14 00:07:58'),
+(35, 'ui', '6', '2018-08-14 00:08:13', '2018-08-14 00:08:13');
+
 -- --------------------------------------------------------
 
 --
@@ -107,8 +121,16 @@ CREATE TABLE `users` (
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
   `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `username` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`id`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`, `username`) VALUES
+(1, 'Tanny Rotersos', 'tannyrotersos@gmail.com', '$2y$10$zjDGBSsbbr/ZWaKBiv8gWOsigBxKygN34HYYvhy4DbZvg4dwBJxke', 'vUIcVZDKYfcr5zZWrZJ9S7xZenq0R83XeFNL4PdcEfkiFBhT3U4kOuWcf2L2', '2018-09-09 21:08:24', '2018-09-09 21:08:24', 'tannyrotersos');
 
 --
 -- Indexes for dumped tables
@@ -143,7 +165,8 @@ ALTER TABLE `qualities`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`id`),
-  ADD UNIQUE KEY `users_email_unique` (`email`);
+  ADD UNIQUE KEY `users_email_unique` (`email`),
+  ADD UNIQUE KEY `users_username_unique` (`username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -153,25 +176,25 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `crushes`
 --
 ALTER TABLE `crushes`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `qualities`
 --
 ALTER TABLE `qualities`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
